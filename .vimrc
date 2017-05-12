@@ -1,12 +1,14 @@
 set nocompatible
 set backspace=indent,eol,start
+set omnifunc=syntaxcomplete#Complete
 
 if has("vms")
-	set nobackup		" do not keep a backup file, use versions instead
+	set nobackup
 else
-	set backup		" keep a backup file (restore to previous version)
-	set undofile		" keep an undo file (undo changes after closing)
+	set backup
+	set undofile
 endif
+
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
@@ -50,13 +52,15 @@ set directory=~/.vim/tmp
 set undodir=~/.vim/tmp
 set cursorline
 set number
-set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
+set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
 " Plugins
 call plug#begin('~/.vim/plugged')
 
 Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'vim-syntastic/syntastic'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'valloric/YouCompleteMe'
 
 call plug#end()
 
