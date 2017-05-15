@@ -52,7 +52,7 @@ set directory=~/.vim/tmp
 set undodir=~/.vim/tmp
 set cursorline
 set number
-set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " Plugins
 call plug#begin('~/.vim/plugged')
@@ -61,6 +61,8 @@ Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'vim-syntastic/syntastic'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'valloric/YouCompleteMe'
+Plug 'ruanyl/vim-fixmyjs'
+Plug 'junegunn/vim-emoji'
 
 call plug#end()
 
@@ -71,16 +73,34 @@ set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+nnoremap <F2> :call ToggleLocList()<cr>
+let g:list_close = 1
+function! ToggleLocList()
+  if g:list_close
+    lopen
+    let g:list_close = 0
+  else
+    lclose
+    let g:list_close = 1
+  endif
+endfunction
+
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
+
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
+
+let g:syntastic_enable_balloons = 1
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
+let g:syntastic_error_symbol = '✗✗''
+let g:syntastic_style_error_symbol = '✠✠'
+let g:syntastic_warning_symbol = '∆∆'
+let g:syntastic_style_warning_symbol = '≈≈'
+
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
