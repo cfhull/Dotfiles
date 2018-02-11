@@ -1,0 +1,222 @@
+### i3 variables
+#
+
+# set modifier key
+set $mod Mod1
+
+# set workspace names
+set $ws1 "1:&#xf015; General"
+set $ws2 "2:&#xf0ac; Web"
+set $ws3 "3:&#xf1b6; Steam"
+set $ws4 "4:&#xf003; Email"
+set $ws5 "5:&#xf001; Media"
+set $ws6 "6:&#xf03e; Screensaver"
+set $ws7 "7:&#xf1b3; Miscellaneous"
+set $ws8 "Projector"
+
+### Fonts
+#
+
+# Font for window title (and bar if not included in bar section)
+font pango:Inconsolata 12
+
+### Startup Applications
+#
+
+exec_always --no-startup-id feh --bg-scale ~/Pictures/arch.jpg
+exec_always --no-startup-id xrandr --output DVI-I-1 --auto --primary --right-of DVI-D-0
+exec_always --no-startup-id xrandr --output DVI-D-0 --off
+exec_always --no-startup-id compton --config ~/.compton.conf -b
+exec_always --no-startup-id polybar example
+#exec_always --no-startup-id xrdb -merge ~/.Xresources
+#
+### Custom Scripts
+#
+
+bindsym $mod+Shift+F12 exec --no-startup-id ~/.i3/swapOrientation.sh&;
+bindsym $mod+Shift+F1  exec --no-startup-id ~/.i3/help.sh&;
+
+### Keybinds
+#
+
+# the key that needs to be pressed before left clicking to drag floating windows
+floating_modifier $mod
+
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change window focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+g split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# enables resize mode
+bindsym $mod+r mode "resize"
+
+# hotkeys for resize mode
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+# run default workspace programs
+bindsym $mod+F1 workspace $ws1;
+bindsym $mod+F2 workspace $ws2; exec chromium&
+bindsym $mod+F3 workspace $ws3; exec steam&
+bindsym $mod+F4 workspace $ws4; exec unity-editor&
+
+### Application assignment to workspaces
+#
+
+#assign [class="asciiquarium"] $ws1
+#assign [class="asciiquarium"] $ws2
+assign [class="Steam"] $ws3
+
+### Color Scheme
+#
+
+# set color variables
+set $red        "#990000"
+set $darkred    "#660000"
+set $black		"#000000"
+set $white		"#ffffff"
+set $gray		"#e0e0e0"
+
+# set window decoration colors
+# class                 border      backgr.     text       indicator
+client.focused          $darkred    $red				$white     $gray
+client.focused_inactive $darkred    $darkred    $white     #484e50
+client.unfocused        $darkred    #222222     #888888    #292d2e
+client.urgent           $darkred    #900000     $white     #900000
+client.placeholder      $darkred    #0c0c0c     $white     $black
+
+
+### i3bar
+#
+
+#bar {
+#
+#		# sets which monitor to output application tray to
+#		tray_output primary
+#
+#		# pipes conky info to i3bar
+#	  status_command i3blocks
+#
+#		# removes numbers from workspace names
+#		strip_workspace_numbers yes
+#
+#		# sets i3 bar colors using color scheme colors
+#    colors {
+#				# class							border     bg	  text
+#        background          $black
+#        statusline          $red
+#        separator           $white
+#        focused_workspace   $black    $red        $black
+#        active_workspace    $black    $darkred    $black
+#        inactive_workspace  $black    $black      $red
+#        urgent_workspace    $gray     $red        $black
+#    }
+#}
+
+
+# removes title bars
+new_window pixel
+
+# settings for gaps between windows (i3-gaps)
+gaps inner 10
+gaps outer 5
+
+#workspace $ws1 gaps inner 5
+#workspace $ws1 gaps outer 0
+#workspace $ws9 gaps inner 5
+#workspace $ws9 gaps outer 0
+
+# custom hotkeys
+bindsym $mod+Shift+0 exec "urxvt -e vim ~/.config/i3/config"
+bindsym $mod+Shift+p exec --no-startup-id "~/Scripts/toggleProjector.sh" 
+bindsym $mod+d exec "i3-dmenu-desktop --dmenu='dmenu -i -nb darkred -nf white -sb red -sf black'"
+workspace $ws8 output HDMI-0
+bindsym $mod+Shift+g exec --no-startup-id "~/Scripts/openZelda.sh" 
+mouse_warping none
