@@ -3,10 +3,13 @@
 xrandr --output DVI-I-1 --auto --primary --right-of DVI-D-0 &
 feh --bg-scale ~/Pictures/redlinething.jpg &
 compton --config ~/.compton.conf -b &
-polybar example &
+Scripts/launch_polybar &
 sxhkd &
 
-bspc monitor DVI-I-1 -d I II III IV V VI VII VIII IX X
+bspc config focus_follows_pointer true
+
+bspc monitor DVI-I-1 -d I II III IV V VI VII
+bspc monitor HDMI-0 -d VIII IX X
 
 bspc config border_width         2
 bspc config window_gap          12

@@ -71,7 +71,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'vim-syntastic/syntastic'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'valloric/YouCompleteMe'
+Plug 'ajh17/VimCompletesMe'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'ruanyl/vim-fixmyjs'
 Plug 'junegunn/vim-emoji'
 
