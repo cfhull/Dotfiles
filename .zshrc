@@ -7,3 +7,9 @@ export PATH=/usr/local/bin:$PATH
 export EDITOR=vim
 export BROWSER=chromium
 export XDG_CONFIG_HOME=$HOME/.config
+
+ZSH_THEME="spaceship"
+
+# Set Spaceship ZSH as a prompt
+autoload -U promptinit; promptinit
+prompt spaceship

@@ -49,7 +49,11 @@ set directory=~/.vim/tmp
 set undodir=~/.vim/tmp
 set cursorline
 set number
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+set tabstop=2 softtabstop=0 shiftwidth=2 expandtab copyindent preserveindent
+
+set wildmenu
+" ignores files from fuzzy search
+set wildignore+=node_modules/*,bower_components/*
 
 " Disables arrow keys
 noremap <Up> <NOP>
@@ -73,8 +77,8 @@ Plug 'ajh17/VimCompletesMe'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'ruanyl/vim-fixmyjs'
 Plug 'junegunn/vim-emoji'
-Plug 'tpope/vim-rails'
-Plug 'astashov/vim-ruby-debugger'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 call plug#end()
 
