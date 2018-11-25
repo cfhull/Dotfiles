@@ -1,4 +1,7 @@
-ZSH=$HOME/.oh-my-zsh/
+case $(uname) in
+  'Linux')   export TERM=termite ;;
+  'Darwin')  export TERM=xterm-256color ;;
+esac
 
 DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
@@ -10,18 +13,17 @@ plugins=(
   zsh-autosuggestions
 )
 
-export PATH=/home/chris/.local/bin:$PATH
+export PATH=/usr/local/bin:/home/chris/.local/bin:$PATH
 export TERM=xterm-256color
 export TERMINAL=termite
 export EDITOR=vim
 export BROWSER=chromium
-export ASPNETCORE_ENVIRONMENT=development
 export XDG_CONFIG_HOME=$HOME/.config
+export ZSH=/usr/share/oh-my-zsh/
 
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 alias vim="nvim"
 
-ZSH_THEME=powerlevel9k/powerlevel9k
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="↱"
@@ -35,6 +37,5 @@ fi
 
 alias scrotclip= 'scrot -s ~/foo.png && xclip -selection clipboard -t image/png ~/foo.png && rm ~/foo.png'
 
-source $ZSH/oh-my-zsh.sh\
-
-
+source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+source /usr/share/oh-my-zsh/oh-my-zsh.sh

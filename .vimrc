@@ -17,12 +17,9 @@ set incsearch		" do incremental searching
 if has('mouse')
 	set mouse=a
 endif
-
-if &t_Co > 2 || has("gui_running")
-	syntax on
-	colorscheme jellybeans 
-	set hlsearch
-endif
+set t_Co=256
+syntax on
+set hlsearch
 
 if has("autocmd")
 	filetype plugin indent on
@@ -72,6 +69,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'edkolev/tmuxline.vim'
+Plug 'nanotech/jellybeans.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ajh17/VimCompletesMe'
@@ -80,6 +78,8 @@ Plug 'ruanyl/vim-fixmyjs'
 Plug 'junegunn/vim-emoji'
 Plug 'ternjs/tern_for_vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-rails'
+Plug 'astashov/vim-ruby-debugger'
 
 call plug#end()
 
@@ -124,3 +124,6 @@ highlight link SyntasticStyleWarningSign SignColumn
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+
+set background=dark
+colors jellybeans 
