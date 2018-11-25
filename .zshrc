@@ -1,14 +1,13 @@
 case $(uname) in
   'Linux')
-    export TERM=termite
     export BROWSER=chromium
     ;;
   'Darwin')
-    export TERM=xterm-256color
     export BROWSER=google-chrome
     ;;
 esac
 
+export TERM=xterm-256color
 export PATH=/usr/local/bin:/home/chris/.local/bin:$PATH
 export EDITOR=vim
 export XDG_CONFIG_HOME=$HOME/.config
