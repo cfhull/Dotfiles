@@ -65,16 +65,21 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
+cmap W w !sudo tee % > /dev/null
+
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'vim-airline/vim-airline'
+Plug 'edkolev/tmuxline.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ajh17/VimCompletesMe'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'ruanyl/vim-fixmyjs'
 Plug 'junegunn/vim-emoji'
+Plug 'ternjs/tern_for_vim'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -116,3 +121,6 @@ highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1

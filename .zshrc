@@ -4,7 +4,11 @@ DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(zsh-syntax-highlighting)
+plugins=(
+  zsh-syntax-highlighting,
+  git,
+  zsh-autosuggestions
+)
 
 export PATH=/home/chris/.local/bin:$PATH
 export TERM=xterm-256color
@@ -15,7 +19,7 @@ export ASPNETCORE_ENVIRONMENT=development
 export XDG_CONFIG_HOME=$HOME/.config
 
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
-alias csx='cd /mnt/c/Users/CHull/Source/Repos/csx2/CSX.Core/'
+alias vim="nvim"
 
 ZSH_THEME=powerlevel9k/powerlevel9k
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -29,4 +33,8 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
 
-source $ZSH/oh-my-zsh.sh
+alias scrotclip= 'scrot -s ~/foo.png && xclip -selection clipboard -t image/png ~/foo.png && rm ~/foo.png'
+
+source $ZSH/oh-my-zsh.sh\
+
+
