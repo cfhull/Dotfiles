@@ -66,11 +66,14 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
+cmap W w !sudo tee % > /dev/null
+
 " Plugins
 call plug#begin('~/.vim/plugged')
 
+Plug 'vim-airline/vim-airline'
+Plug 'edkolev/tmuxline.vim'
 Plug 'nanotech/jellybeans.vim'
-Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'vim-syntastic/syntastic'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ajh17/VimCompletesMe'
@@ -79,6 +82,10 @@ Plug 'ruanyl/vim-fixmyjs'
 Plug 'junegunn/vim-emoji'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'ternjs/tern_for_vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-rails'
+Plug 'astashov/vim-ruby-debugger'
 
 call plug#end()
 
@@ -120,6 +127,9 @@ highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 set background=dark
 colors jellybeans 
