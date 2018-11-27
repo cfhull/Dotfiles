@@ -100,13 +100,13 @@ set statusline+=%*
 nnoremap <F2> :call ToggleLocList()<cr>
 let g:list_close = 1
 function! ToggleLocList()
-  if g:list_close
-    lopen
-    let g:list_close = 0
-  else
-    lclose
-    let g:list_close = 1
-  endif
+	if g:list_close
+		lopen
+		let g:list_close = 0
+	else
+		lclose
+		let g:list_close = 1
+	endif
 endfunction
 
 let g:syntastic_always_populate_loc_list = 1
@@ -131,5 +131,5 @@ highlight link SyntasticStyleWarningSign SignColumn
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
-set background=dark
-colors jellybeans 
+"set background=dark
+"colors jellybeans 
