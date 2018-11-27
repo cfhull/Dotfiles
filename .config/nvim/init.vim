@@ -72,6 +72,7 @@ cmap W w !sudo tee % > /dev/null
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'vim-syntastic/syntastic'
@@ -131,5 +132,4 @@ highlight link SyntasticStyleWarningSign SignColumn
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
-"set background=dark
-"colors jellybeans 
+colors jellybeans 
