@@ -13,8 +13,11 @@ export EDITOR=vim
 export XDG_CONFIG_HOME=$HOME/.config
 export KEYTIMEOUT=1
 
-alias scrotclip='scrot -s ~/foo.png && xclip -selection clipboard -t image/png ~/foo.png && rm ~/foo.png'
 alias vim="nvim"
+
+if [ -f ~/local-aliases ]; then
+    source ~/local-aliases
+fi
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
