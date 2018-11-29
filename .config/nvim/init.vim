@@ -75,27 +75,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug 'nanotech/jellybeans.vim'
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ajh17/VimCompletesMe'
-Plug 'ruanyl/vim-fixmyjs'
-Plug 'junegunn/vim-emoji'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'ternjs/tern_for_vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-rails'
-Plug 'astashov/vim-ruby-debugger'
 
 call plug#end()
-
-" Powerline settings
-set laststatus=2
-
-" Syntastic Settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 nnoremap <F2> :call ToggleLocList()<cr>
 let g:list_close = 1
@@ -109,26 +93,12 @@ function! ToggleLocList()
 	endif
 endfunction
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-
-let g:syntastic_enable_balloons = 1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '✗✗'
-let g:syntastic_style_error_symbol = '✠✠'
-let g:syntastic_warning_symbol = '∆∆'
-let g:syntastic_style_warning_symbol = '≈≈'
-
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
+"ale settings
+let g:airline#extensions#ale#enabled = 1
+let b:ale_fixers = {'javascript': ['eslint']}
+let g:ale_sign_column_always = 1
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
-colors jellybeans 
+colors jellybeans
