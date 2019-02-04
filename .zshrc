@@ -7,6 +7,7 @@ case $(uname) in
     ;;
 esac
 
+export ASPNETCORE_ENVIRONMENT=development
 export TERM=xterm-256color
 export PATH=/usr/local/bin:/home/chris/.local/bin:$PATH
 export EDITOR=vim
@@ -14,6 +15,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 export KEYTIMEOUT=1
 
 alias vim="nvim"
+alias scrotclip=$'scrot \'/tmp/%F_%T.png\' -s -e \'xclip -selection c -t image/png $f\''
+
 
 if [ -f ~/local-aliases ]; then
     source ~/local-aliases

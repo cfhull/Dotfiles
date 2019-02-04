@@ -78,6 +78,9 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'ap/vim-css-color'
+Plug 'leafgarland/typescript-vim'
+Plug 'mxw/vim-jsx'
 
 call plug#end()
 
