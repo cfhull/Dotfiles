@@ -66,7 +66,7 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
-cmap W w !sudo tee % > /dev/null
+"cmap W w !sudo tee % > /dev/null
 
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
@@ -80,6 +80,7 @@ Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ap/vim-css-color'
 Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
 call plug#end()
