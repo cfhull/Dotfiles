@@ -32,7 +32,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   context
   dir_writable
   dir
-  vcs
+  #vcs # way too slow to be usable
 )
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   status
