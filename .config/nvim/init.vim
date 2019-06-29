@@ -55,11 +55,11 @@ set wildmenu
 " ignores files from fuzzy search
 set wildignore+=node_modules/*,bower_components/*
 
-" Disables arrow keys
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+" Disable arrow movement, resize splits instead.
+nnoremap <Up>    :resize +2<CR>
+nnoremap <Down>  :resize -2<CR>
+nnoremap <Left>  :vertical resize +2<CR>
+nnoremap <Right> :vertical resize -2<CR>
 
 " Cursor shapes
 let &t_SI = "\<Esc>[6 q"
@@ -82,6 +82,9 @@ Plug 'ap/vim-css-color'
 Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'universal-ctags/ctags'
+Plug 'ludovicchabant/vim-gutentags'
+
 
 call plug#end()
 
@@ -114,3 +117,4 @@ augroup END
 
 set foldlevel=99
 
+let g:netrw_banner = 0
