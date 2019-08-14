@@ -1,14 +1,6 @@
 set nocompatible
-set backspace=indent,eol,start
-set omnifunc=syntaxcomplete#Complete
 
-if has("vms")
-	set nobackup
-else
-	set backup
-	set undofile
-endif
-
+set termguicolors
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
@@ -17,31 +9,12 @@ set incsearch		" do incremental searching
 if has('mouse')
 	set mouse=a
 endif
+
 set t_Co=256
 syntax on
 set hlsearch
 
-if has("autocmd")
-	filetype plugin indent on
-
-	augroup vimrcEx
-		au!
-		autocmd FileType text setlocal textwidth=78
-		autocmd BufReadPost *
-					\ if line("'\"") >= 1 && line("'\"") <= line("$") |
-					\   exe "normal! g`\"" |
-					\ endif
-	augroup END
-else
-	set autoindent		" always set autoindenting on
-endif " has("autocmd")
-
-if has('langmap') && exists('+langnoremap')
-	" Prevent that the langmap option applies to characters that result from a
-	" mapping.  If unset (default), this may break plugins (but it's backward
-	" compatible).
-	set langnoremap
-endif
+filetype plugin indent on
 
 " sets swp and ~ files to be created inside the .vim/tmp folder
 set backupdir=~/.vim/tmp
@@ -51,6 +24,7 @@ set cursorline
 set number
 set tabstop=2 softtabstop=0 shiftwidth=2 expandtab copyindent preserveindent
 
+set wildmode=full
 set wildmenu
 " ignores files from fuzzy search
 set wildignore+=node_modules/*,bower_components/*
@@ -74,20 +48,26 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'nanotech/jellybeans.vim'
-Plug 'w0rp/ale'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'ap/vim-css-color'
 Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'universal-ctags/ctags'
-Plug 'ludovicchabant/vim-gutentags'
-
+Plug 'othree/jspc.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
+
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 
 nnoremap <F2> :call ToggleLocList()<cr>
 let g:list_close = 1
@@ -100,11 +80,6 @@ function! ToggleLocList()
 		let g:list_close = 1
 	endif
 endfunction
-
-"ale settings
-let g:airline#extensions#ale#enabled = 1
-let b:ale_fixers = {'javascript': ['eslint']}
-let g:ale_sign_column_always = 1
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -119,3 +94,56 @@ augroup END
 set foldlevel=99
 
 let g:netrw_banner = 0
+
+command! Source so ~/.config/nvim/init.vim
+
+"-------------------
+"----- Coc.vim -----
+"-------------------
+
+g:coc_global_extensions=[
+\ 'coc-highlight',
+\ 'JavaScriptSnippets',
+\ 'coc-snippets',
+\ 'coc-eslint',
+\ 'coc-prettier',
+\ 'coc-yaml',
+\ 'coc-stylelint',
+\ 'coc-json',
+\ 'coc-css',
+\ 'coc-tsserver']
+
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
