@@ -1,0 +1,8 @@
+#!/bin/bash
+
+brew update
+brew upgrade
+brew install zsh tmux
+brew cask install iterm2
+
+sh ./install_shared
