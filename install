@@ -1,8 +1,0 @@
-#!/bin/bash
-
-brew update
-brew upgrade
-brew install sshfs zsh zsh-completions tmux
-brew cask install iterm2
-
-gem install tmuxinator
