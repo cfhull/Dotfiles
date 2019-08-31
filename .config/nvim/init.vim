@@ -101,7 +101,7 @@ command! Source so ~/.config/nvim/init.vim
 "----- Coc.vim -----
 "-------------------
 
-g:coc_global_extensions=[
+let g:coc_global_extensions = [
 \ 'coc-highlight',
 \ 'JavaScriptSnippets',
 \ 'coc-snippets',
