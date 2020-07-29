@@ -41,6 +41,15 @@ nnoremap <Down>  :resize -2<CR>
 nnoremap <Left>  :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
 
+" Overwrite :Rg to show hidden and ignored files, as well as ignore filename
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case --no-ignore --hidden -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+
+nmap <Leader>g :Rg<CR>
+nnoremap <Leader>f :Files<CR>
+
 " Cursor shapes
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
@@ -62,6 +71,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
 Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
