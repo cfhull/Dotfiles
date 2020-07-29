@@ -5,6 +5,7 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
+set undofile
 
 if has('mouse')
 	set mouse=a
@@ -29,6 +30,11 @@ set wildmenu
 " ignores files from fuzzy search
 set wildignore+=node_modules/*,bower_components/*
 
+colors jellybeans
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
 " Disable arrow movement, resize splits instead.
 nnoremap <Up>    :resize +2<CR>
 nnoremap <Down>  :resize -2<CR>
@@ -52,8 +58,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'nanotech/jellybeans.vim'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'leafgarland/typescript-vim'
@@ -61,6 +67,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'othree/jspc.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf',  { 'dir': '~/.fzf' }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -85,11 +93,6 @@ function! ToggleLocList()
 	endif
 endfunction
 
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-
-colors jellybeans
-
 augroup javascript_folding
     au!
     au FileType javascript setlocal foldmethod=syntax
@@ -106,13 +109,12 @@ command! Source so ~/.config/nvim/init.vim
 "-------------------
 
 let g:coc_global_extensions = [
-\ 'coc-highlight',
-\ 'JavaScriptSnippets',
 \ 'coc-snippets',
+\ 'coc-highlight',
 \ 'coc-eslint',
 \ 'coc-prettier',
 \ 'coc-yaml',
-\ 'coc-stylelint',
+\ 'coc-stylelintplus',
 \ 'coc-json',
 \ 'coc-css',
 \ 'coc-tsserver']
