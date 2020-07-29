@@ -12,8 +12,9 @@ fi
 # ------------
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 
-export FZF_DEFAULT_COMMAND="rg --hidden --no-ignore --no-ignore-vcs --files"
+export FZF_DEFAULT_COMMAND="rg --hidden --no-ignore --files"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--inline-info"
 
-alias ff='fzf-tmux'
+alias ff="fzf-tmux --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+alias fzf='fzf-tmux'
